@@ -1,0 +1,33 @@
+{
+  "name": "maps-api",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Román Jiménez <drrouman@gmail.com>",
+  "homepage": "https://github.com/CartoDB/carto-deck.gl#readme",
+  "license": "ISC",
+  "private": true,
+  "main": "dist/maps-api.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CartoDB/carto-deck.gl.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w --preserveWatchOutput",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/CartoDB/carto-deck.gl/issues"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3",
+    "tslint": "^5.19.0"
+  }
+}
