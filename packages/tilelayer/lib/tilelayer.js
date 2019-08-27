@@ -12,14 +12,26 @@ class CartoTileLayer {
     this.map = this.mapsApi.instantiateMap(mapOptions);
   }
 
-  createTileLayer() {
+  createTileLayer(props = {}) {
     const deck = this.deck;
 
     return new deck.TileLayer({
+      ...props,
       getLineColor: [192, 0, 0],
       getFillColor: [200, 120, 80],
       lineWidthMinPixels: 1,
       pointRadiusMinPixels: 5,
+      renderSubLayers: (props) => {
+        console.log(props.data);
+
+        return new deck.HexagonLayer({
+          ...props,
+          radius: 500000,
+          extruded: true,
+          elevationScale: 5000,
+          getPosition: d => d.geometry.coordinates
+        }); 
+      },
       
       getTileData: (tileProperties) => {
           const templateReplacer = (match, property) => tileProperties[property];
