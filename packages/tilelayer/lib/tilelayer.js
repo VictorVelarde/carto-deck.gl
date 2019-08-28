@@ -13,33 +13,30 @@ class CartoTileLayer {
   }
 
   createTileLayer(props = {}) {
-    const deck = this.deck;
+    const { layerType, ...styleProps } = props;
+    const deckLayer = layerType || this.deck.GeoJsonLayer;
 
     return new deck.TileLayer({
-      ...props,
+      ...styleProps,
       getLineColor: [192, 0, 0],
       getFillColor: [200, 120, 80],
       lineWidthMinPixels: 1,
       pointRadiusMinPixels: 5,
       renderSubLayers: (props) => {
-        console.log(props.data);
-
-        return new deck.HexagonLayer({
+        return new deckLayer({
           ...props,
-          radius: 500000,
-          extruded: true,
-          elevationScale: 5000,
-          getPosition: d => d.geometry.coordinates
-        }); 
+          getPosition: d => d.geometry.coordinates,
+          getPolygon: d => d.geometry.coordinates
+        });
       },
-      
+
       getTileData: (tileProperties) => {
           const templateReplacer = (match, property) => tileProperties[property];
-      
+
           return this.map
             .then(templateURL => templateURL.replace(/\{ *([\w_-]+) *\}/g, templateReplacer))
             .then(tileTemplateURL => fetch(tileTemplateURL))
-            .then(response => response.arrayBuffer()) 
+            .then(response => response.arrayBuffer())
             .then(buffer => bufferToGeoJSON(buffer, tileProperties));
       }
     });
@@ -50,14 +47,14 @@ class CartoTileLayer {
 function bufferToGeoJSON(buffer, tileProperties) {
   const tile = new VectorTile(new Protobuf(buffer));
   const features = [];
-  
+
   for (const layerName in tile.layers) {
     const vectorTileLayer = tile.layers[layerName];
-    
+
     for (let i = 0; i < vectorTileLayer.length; i++) {
       const vectorTileFeature = vectorTileLayer.feature(i);
       const feature = vectorTileFeature.toGeoJSON(tileProperties.x, tileProperties.y, tileProperties.z);
-      
+
       features.push(feature);
     }
   }
