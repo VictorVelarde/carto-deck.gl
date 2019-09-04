@@ -46,7 +46,7 @@ class MapsApi {
       body: JSON.stringify(mapParameters)
     };
 
-    return fetch(`https://${this._username}.carto.com/api/v1/map`, requestOptions)
+    return fetch(`https://${this._username}.carto.com/api/v1/map?api_key=${this._apiKey}`, requestOptions)
       .then((response) => response.json())
       .then((data) => `https://${this._username}.carto.com/api/v1/map/${data.layergroupid}/{z}/{x}/{y}.mvt?api_key=${this._apiKey}`);
   }
