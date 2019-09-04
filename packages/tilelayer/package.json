@@ -5,7 +5,7 @@
   "author": "Román Jiménez <drrouman@gmail.com>",
   "homepage": "https://github.com/CartoDB/carto-deck.gl#readme",
   "license": "ISC",
-  "main": "lib/tilelayer.js",
+  "main": "dist/tilelayer.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
