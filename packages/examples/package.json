@@ -1,0 +1,29 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "Deck.gl examples using our CARTO TileLayer",
+  "author": "jesusbotella <jesus.botella@gmail.com>",
+  "homepage": "https://github.com/CartoDB/carto-deck.gl#readme",
+  "license": "ISC",
+  "main": "lib/examples.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CartoDB/carto-deck.gl.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/CartoDB/carto-deck.gl/issues"
+  },
+  "dependencies": {
+    "tilelayer": "^0.0.0"
+  }
+}
